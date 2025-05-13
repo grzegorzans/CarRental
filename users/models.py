@@ -11,7 +11,7 @@ class Address(models.Model):
     building_no = models.CharField(max_length=50)
     apartment_no = models.CharField(max_length=50, blank=True)
 
-class User(User):
+class Customer(User):
     IDENTITY_DOCUMENT_TYPES = [
         ("dowod_osobisty", "Dowód osobisty"),
         ("prawo_jazdy", "Prawo jazdy"),
@@ -22,4 +22,4 @@ class User(User):
     birth_date = models.DateField()
     identity_document_type = models.CharField(max_length=50, choices=IDENTITY_DOCUMENT_TYPES)
     identity_document_no = models.CharField(max_length=50)
-    address = models.OneToOneField(Address, related_name='user_address_set', on_delete=models.CASCADE)
+    address = models.OneToOneField(Address, related_name='user_address_set', on_delete=models.CASCADE, null=True)
